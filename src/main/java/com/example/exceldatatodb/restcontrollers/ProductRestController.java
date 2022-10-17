@@ -5,6 +5,7 @@ import com.example.exceldatatodb.service.ProductService;
 import com.example.exceldatatodb.utility.ExcelUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +19,7 @@ public class ProductRestController {
     @Autowired
     private ProductService prodService;
 
-    @PostMapping("/product/upload")
+    @PostMapping(value="/product/upload", produces = {MediaType.APPLICATION_JSON_VALUE ,MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<?> fileUpload(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty())
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("Error", "Please select a excel file"));
@@ -29,7 +30,7 @@ public class ProductRestController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("Error", "Please upload a excel file with .xlsx format"));
     }
 
-    @GetMapping("/product")
+    @GetMapping(value="/product",produces = {MediaType.APPLICATION_JSON_VALUE ,MediaType.APPLICATION_XML_VALUE})
     public List<Product> getAllProducts(){
         return this.prodService.getAllProducts();
     }
