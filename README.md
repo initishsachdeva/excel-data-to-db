@@ -13,4 +13,4 @@ As part of this project, we have implemented following features of spring boot:
 2. Database integration in spring boot.
 3. Swagger Implementation for API documentation
 
-For testing and validation purpose, please use Postman to check whether the rest api's are giving correct response or not.
+For testing and validation purpose, please use Postman to check whether the Rest api's are giving correct response or not.
